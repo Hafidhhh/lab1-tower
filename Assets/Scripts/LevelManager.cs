@@ -19,29 +19,18 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Transform _towerUIParent;
     [SerializeField] private GameObject _towerUIPrefab;
     [SerializeField] private Tower[] _towerPrefabs;
+
+    [SerializeField] private Transform[] _enemyPaths;
+    [SerializeField] private float _spawnDelay = 5f;
+
+    private List<Tower> _spawnedTowers = new List<Tower>();
+    private List<Enemy> _spawnedEnemies = new List<Enemy>();
+
+    private float _runningSpawnDelay;
+
     private void Start()
     {
         InstantiateAllTowerUI();
     }
-private List<Tower> _spawnedTowers = new List<Tower> ();
-    // Menampilkan seluruh Tower yang tersedia pada UI Tower Selection
-    private void InstantiateAllTowerUI()
-    {
-        foreach (Tower tower in _towerPrefabs)
-        {
-            GameObject newTowerUIObj = Instantiate
-            (_towerUIPrefab.gameObject, _towerUIParent);
-            TowerUI newTowerUI = newTowerUIObj.GetComponent<TowerUI>();
-            newTowerUI.SetTowerPrefab(tower);
-            newTowerUI.transform.name = tower.name;
-        }
-    }
-// Mendaftarkan Tower yang di-spawn agar bisa dikontrol oleh LevelManager
-public void RegisterSpawnedTower (Tower tower)
-{
-_spawnedTowers.Add (tower);
-}
-
-   
 
 }
